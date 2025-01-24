@@ -1,0 +1,23 @@
+- route:
+    id: route-3473
+    from:
+      id: from-1465
+      uri: platform-http
+      parameters:
+        path: /camel/chat
+      steps:
+        - log:
+            message: ${body}
+        - process:
+            description: AI message
+            ref: createChatMessage
+        - log:
+            message: ${body}
+        - to:
+            description: call LLM
+            uri: langchain4j-chat
+            parameters:
+              chatId: getInformation
+              chatOperation: CHAT_MULTIPLE_MESSAGES
+        - log:
+            message: ${body}
