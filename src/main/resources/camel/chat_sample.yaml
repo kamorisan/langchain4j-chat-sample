@@ -2,17 +2,14 @@
     id: route-3473
     from:
       id: from-1465
+      description: /camel/chat
       uri: platform-http
       parameters:
         path: /camel/chat
       steps:
-        - log:
-            message: ${body}
         - process:
-            description: AI message
+            description: createChatMessage
             ref: createChatMessage
-        - log:
-            message: ${body}
         - to:
             description: call LLM
             uri: langchain4j-chat
